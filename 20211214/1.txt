@@ -1,0 +1,61 @@
+◎ Linux 기초
+
+● 파일/디렉토리 생성, 복사, 옮기기, 삭제 - touch, cp, mv, rm, rmdir
+- 우분투
+sudo su
+clear
+ls -al
+touch noname.txt
+ls -al
+cat noname.txt (파일의 내용 보기)
+vi noname.txt (파일 편집기) .. i 클릭해서 INSERT 모드 켜고 타이핑 한후 ESC 눌러서 INSERT모드 끄고 :wq 눌러서 저장후 편집모드 나가기
+다시 cat noname.txt 해보면 내용이 보일 것
+cp --help
+cp noname.txt noname2.txt
+ls -al 로 확인
+cat noname2.txt 해보면 내용도 그대로 복사
+
+
+● CLI (Command Line Interface).. chown 으로 소유자 변경하기
+- 우분투
+chown seongjae.seongjae noname.txt
+ls -al 로 확인해보면 noname.txt는 seongjae 그룹의 seongjae로 바뀌어있을 것
+
+
+● 사용자 권한
+- 유닉스 계열 운영체제는 여러 명이 함께 사용할 수 있는 기능을 가지고 있다.
+- 다중 사용자 시스템이 되면 시스템의 복잡도가 높아진다.
+- 관리자 : superuser(root user).. sudo, su, su -  ...  $ : user상태일때. # : root 상태일 때
+- sudo su - 같은 경우에는 root 권한만 주는 것이 아니라 환경변수를 포함한 모든 계정 자체가 슈퍼유저로 바뀌는 것이다.
+
+- $ sudo useradd -m username
+- $ sudo passwd username
+- $ su - username  : 해당 계정으로 바꿔줌
+- $ sudo usermod -a -G sudo username  : 해당 계정에게 슈퍼계정의 권한을 주는것.. ★ 슈퍼유저 상태에서만 되는듯(sudo su)
+- $ sudo deluser username sudo  : 해당 계정으로부터 슈퍼계정의 권한을 뺏는것
+  cf) 이 과정에서 gildong is not in the sudoers file. This incident will be reported. 이런 오류가 뜰 수 있다. 그럼 슈퍼권한 가진 계정가서 다시 권한줘야함
+
+- 권한부여(permission)
+  User가 파일/디렉토리에 대해 읽기/쓰기/실행을 할 수 있는 권한을 지정
+  ls -l 파일의 권한, 소유자 등의 정보 확인 가능
+  권한 : -rw-rw-r--와 같은 형태 (소유자-그룹-타인)
+- 권한 변경 : chmod 명령어 사용
+
+＠ 실습1 : 삼성전자 조직도 그룹화 및 유저 생성과 파일 생성(권한부여까지)
+   -> 파일부터 만들면 됨
+
+＠ 실습2 :
+   모든 프로세스의 트리를 확인하는 방법, 특정 프로세스의 정보를 확인하는 방법, 프로세스의 PID 확인하는 방법 두가지
+   지속적으로 현재 실행 중인 프로세스의 목록 확인, 특정 프로세스 상태 확인, 프로세스 죽이기, 프로세스 시그널 종류 출력 방법 
+
+- PIPE
+  : 파이프는 재지향(redirection)과 더불어 리눅스의 명령어들을 훨씬 강력하게 무장시켜주는 역할을 하는 핵심 기능이다.
+    마치 그 자체로는 특별한 맛이 나지 않지만 단맛이나 짠맛 같은 다른 맛을 강하게 만들어주는 조미료와 같다.
+  - sudo su -
+  - cat /etc/passwd | grep mail (mail text가 있는 것만 출력해줌)
+  - cat 
+
+＠ 실습3 : 다중명령어
+   세미콜론(;), 엠퍼센트(&&), 더블 버티컬바(||)
+
+// MariaDB 설치 완료하기
