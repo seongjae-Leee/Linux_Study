@@ -1,1 +1,34 @@
-◎ 
+◎ Pakcage managing (패키지 관리)
+패키지 관리란 새로운 소프트웨어를 설치, 업데이트, 삭제하는 일을 말한다.
+배포 형태|- 소스코드 형태
+         |- 바이너리 패키지 형태 (응용프로그램, 라이브러리, 버전 정보와 같은 것까지 다 담겨 있음)
+저장소에 저장됨.
+패키지 간의 의존성 존재. 리눅스 패키지 관리 시스템이 이 의존성을 해결하는 기능을 제공함.
+
+리눅스 배포판에 따라 서로 다른 패키지 형식을 지원함. |- Debian 계열(Debian, Ubuntu 등) : .deb 파일
+                                                  |- RedHat 계열(RedHat, Fedora, CentOS) : .rpm 파일
+                                                  |- openSUSE 계열 : openSUSE를 위해 특별히 빌드된 .rpm 파일
+
+Ubuntu에서는 /var/cache/apt/archives 디렉토리에 다양한 .deb 파일들을 보관함.
+
+두 유형의 패키지 관리 도구 |- 저수준 툴 : 실제 패키지의 설치, 업데이트, 삭제 등을 수행 (dpkg)
+                          |- 고수준 툴 : 의존성의 해결, 패키지 검색 등의 기능을 제공 (apt-get / aptitude)
+dpkg : Debian 기반의 리눅스에서 사용되는 저수준 패키지 관리자(low-level package manager)
+       $ dpkg --help
+       $ dpkg -i [설치패키지명].deb   : 패키지의 설치
+       $ dpkg -l   : 설치된 패키지를 나열
+       $ dpkg -l [패키지명] : 설치되었는지 확인
+       $ dpkg -r [설치된 패키지명] : 설치된 패키지를 삭제
+
+       ex) sudo su -
+           cd /var/cache/apt/archives
+           sudo apt-get -d install minicom
+           dpkg -i minicom_2.7.1-1.1_amd64.deb
+           dpkg -l // 확인
+           dpkg -r minicom_2.7.1-1.1_amd64.deb // 삭제
+           dpkg -l | grep minicom
+           cf) sudo dpkg -P minicom 하면 미니콤 완전 삭제
+
+
+
+
