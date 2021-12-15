@@ -106,3 +106,26 @@ vi testcurl 해서 쉘 스크립트 써주고
 실행권한이 없으므로 chmod u+x testcurl.sh 로 실행권한 주고
 ./testcurl.sh로 실행해도 똑같음
 
+● ARCIVE(압축파일)
+- tar
+- 압축되지 않은 아카이브를 만드려면 cfv 옵션을 붙인다. 옵션 c (create)는 새로운 아카이브를 만들라는 것이다.
+  v (verbose)는 작업중인 파일이름을 표시해주는 옵션. f 옵션으로 아카이브할 파일 이름을 지정한다. 옵션을 여러개 사용시 순서는 중요하지 않다.
+  cvf 옵션으로는 어떠한 압축도 수행하지 않기 때문에 gzip으로 압축된 아카이브를 만드려면 z 옵션을 추가한다.
+  여기서 .tar.gz 는 .tgz 과 같은 의미로 사용된다.
+  $ tar cvf 아카이브이름.tar <압축할 디렉토리>
+  
+  해보기
+  mkdir test_dir   // test용 디렉토리 만들고
+  touch test1.txt
+  touch test2.txt
+  touch test3.txt  // 파일 세개 만들어주기
+  cd ..
+  tar cvfz test_tar.tar test_dir // 압축 하기 
+  tar xvf test_tar.tar // 압축 풀기 (혹은 $ tar xvfz 이름 tar.gz, 혹은 $ tar xvfj 이름 tar.bz2 ... 뒤로 갈수록 압축률이 높아짐)
+
+- 원하는 파일만 골라서 압축 풀기 : --wildcards 옵션으로 파일 이름의 패턴을 지정해서!
+  ex) $ tar cvf 원하는(압축됐을때)아카이브이름.tar --wildcards *.확장자명   -> 오류 메시지는 뜨는데 압축은 됨...왜냐하면 wildcards는 압축 풀기용이므로.
+
+- 특정 파일을 제외하고 아카이브 만들기 : --exclude 옵션으로 원하지 않는 파일을 제외할 수 있다.
+  ex) tar -cfv 아카이브이름.tar <압축할 디렉토리> --exclude='필요없는 파일명 or 디렉토리명'
+  
