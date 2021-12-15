@@ -29,6 +29,30 @@ dpkg : Debian 기반의 리눅스에서 사용되는 저수준 패키지 관리�
            dpkg -l | grep minicom
            cf) sudo dpkg -P minicom 하면 미니콤 완전 삭제
 
+- apt-get / apt-cache의 경우 패키지 리포지토리는 /etc/apt/sources.list에 명시되어 있음.
+  저 주소로 가서 cat이나 vi sources.list 해보면 버전정보, 배포 유형 등이 나옴
+
+- sudo apt update 하면 패키지 리포지토리 리스트를 업데이트할 수 있다.
+
+- 파일 다운로드
+  wget  vs  curl
+
+  공통점 : HTTP, HTTPS, FTP 프로토콜을 통해 컨텐츠를 다운로드하는 커맨드 라인 툴이다
+           HTTP POST request를 지원한다.(즉, 웹사이트로 데이터를 전송할 수 있다.)
+           HTTP 쿠키를 지원한다
+           스크립트처럼 사용자 인터렉션없이 수행될 수 있도록 설계되었다.
+           오픈소스이며 무료이다.
+           90년대에 시작한 프로젝트이다.
+           metalink를 지원한다.
+  
+  wget : 인터넷에서 파일을 받는 가장 좋은 방법이다. 간단하고 직관적으로 사용 가능. 별도의 라이브러리가 없다.
+         재귀적으로 다운로드한다.(즉, 페이지에 있는 모든 내용이나 FTP 디렉토리에 있는 모든 파일들을 한번에 그대로 복사해온다.)
+         여러 복잡한 다운로드 상황을 거의 다 제어할 수 있다.
+         인터넷에서 단일 파일을 받아 현재 디렉토리에 저장하는 방법이다.
+         $ wget DOWNLOAD-URL
+    해보기
+    $ cd /home/seongjae
+    $ wget https://google.com
 
 
 
