@@ -23,7 +23,7 @@ cmd에서 ipconfig로 내 ip 확인해서 192.168.45.168:3000 을 하면 나랑 
 
 
 ▼ 이제부터 쉘 스크립트 .. seongjae 폴더에 workspace 폴더 만들고 진행
-$ echo $SHELL
+$ echo $SHELL   // 결과값 : /bin/bash
 $ cat /etc/shells
 cf) $ chsh /bin/dash    // 쉘을 바꿔서 할 수 있음
 $ date; whoami   // 세미콜론으로 명령어 두개 한번에 입력할 수 있음
@@ -95,8 +95,4 @@ $ vi variable.sh
 $ ./variable.sh   // 권한주고 실행하면 lucas 뜸
 - 변수 타입
   : 지역변수, 전역변수, 환경변수, 예약변수
-$ 
-$ 
-$ 
-$ 
 $ 
