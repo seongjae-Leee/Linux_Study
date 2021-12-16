@@ -1,0 +1,43 @@
+우분투로 서버 만들어 보기
+$ sudo su -
+$ cd /home/seongjae
+$ mkdir server   // 서버 디렉토리 생성
+$ cd server
+$ npm -v   // npm 깔려있는지 확인
+$ npm init   // 각종 정보 입력
+$ ls -al   //확인
+$ npm install express   // 서버 연결을 위해
+$ vi server.js
+  i
+  내용 입력하고
+  :wq
+$ cat server.js   // 내용 확인
+$ noder server.js    // 실행해서 console.log() 뜨는지 확인
+$ ctrl + z 로 나오고
+$ ps -ef   // 프로세스 확인해보면 node server.js가 백그라운드에서 돌고 있음
+$ kill -9 476   // node server.js 죽이고
+$ node server.js &   // 백그라운드에서 돌림
+
+제어판에서 윈도우 방화벽 설정으로 간 뒤 인바운드 규칙에서 새 규칙으로 3000 포트 하나 추가해 열어주고
+cmd에서 ipconfig로 내 ip 확인해서 192.168.45.168:3000 을 하면 나랑 같은 네트워크망을 쓰는 사람들은 내 페이지를 볼 수 있게 됨
+
+이제부터 쉘 스크립트
+$ echo $SHELL
+$ cat /etc/shells
+cf) $ chsh /bin/dash    // 쉘을 바꿔서 할 수 있음
+$ date; whoami   // 세미콜론으로 명령어 두개 한번에 입력할 수 있음
+cf) $ &&으로 엠퍼센트... 틀리지 않을 때까지만 실행할 수 있음
+$ multicommand.sh
+  i
+  #!/bin/bash
+  datewhoami
+  esc
+  :wq
+$ chmod u+x multicommand.sh
+$ ./multicommand.sh
+$ 
+$ 
+$ 
+$ 
+$ 
+$ 
