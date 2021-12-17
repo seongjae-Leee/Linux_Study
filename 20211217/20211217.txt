@@ -1,0 +1,154 @@
+@ 오늘도 SHELL script
+- 특수 권한 (SetUID)
+  - 사용자의 파일 권한을 부여하여 기초적인 보안체계를 유지
+  - 파일이나 디렉토리에 User / Group / Other 권한이 존재
+  - 각각 읽기, 쓰기, 실행 권한을 부여
+  - 이러한 권한을 수정하기 위해서 chmod 명령을 사용하는데 쉘에서 특수 권한을 주기 위해서도 같은 명령어를 사용한다.
+    - 어떻게 쓰는지 알아보자
+    - SetUDI를 사용하면 파일을 실행할 때 일시적으로 소유자의 권한 획득.
+    - root 권한으로 지정된 프로그램에 setUID가 지정되어 있으면 root 권한으로 실행
+    - 기존에 실행 권한이 없으면 대문자 S, 있으면 소문자 s로 표시
+      - /usr/bin/passwd 참조
+        - 계정의 비밀번호를 변경
+        - root만 변경 가능
+        - /usr/bin/passwd에 setUID가 설정되어 있지 않으면?
+        - /etc/passwd는 사용자의......
+        - 실제 비밀번호는.....
+
+$ sudo su -
+$ cd /usr/bin   
+$ ll | grep passwd    // passwd 유저 권한에 s 확인 가능... 왜 ll 이지?(소문자 엘) : ll 이란 ls 명령어에 -l 옵션을 준 형태를 표시해주는 역할
+- SetGID
+  - 파일을 실행할 때 일시적으로 파일 소유그룹의 권한 획득
+  - 기존 권한에 실행 권한이 없으면 대문자 S, 있으면 소문자 s로 표시된다.
+
+- 특수 변수
+  - $0 : 
+  - $n : 
+  - $# : 
+  - $* : 전체 인자 값
+  - $@ : 모든 인자가 ""로 묶여 있으며
+  - $? : 
+  - $$ : 
+  - $! : 
+cd /home/seongjae/workspace
+● commandlineargument 만들어보자
+$ vi commandlineargument
+#!/bin/bash
+echo "File Name: $0"
+echo "First Parameter: $1"
+echo "Second Parameter: $2"
+echo "Quoted Values: $@"
+echo "Quoted Values: $*"
+echo "Total Number of Parameters: $#"
+▽
+결과값 : 
+root@DESKTOP-684T1FJ:/home/seongjae/workspace# ./commandlineargument.sh seongjae Lee
+File Name: ./commandlineargument.sh
+First Parameter: seongjae
+Second Parameter: Lee
+Quoted Values: seongjae Lee
+Quoted Values: seongjae Lee
+Total Number of Parameters: 2
+
+● commandlineargument2 만들어보자
+$ vi commandlineargument2
+#!/bin/bash
+for TOKEN in $*
+do
+  echo $TOKEN
+done
+▽
+결과값 :
+root@DESKTOP-684T1FJ:/home/seongjae/workspace# ./commandlineargument2.sh seongjae Lee Fighting
+seongjae
+Lee
+Fighting
+
+
+- 명령어 치환
+  - 명령어 치환의 두가지 형태
+    - 역따옴표(`...`) 즉 백틱을 쓰는 것이다
+    - $(...) 양식
+
+● commandsubstition을 만들어보자
+$ vi commandsubstitution.sh
+#!/bin/bash
+script_name=`basename $0`
+echo "This script name is $script_name"
+▽
+결과값 :
+root@DESKTOP-684T1FJ:/home/seongjae/workspace# ./commandsubstitution.sh
+This script name is commandsubstitution.sh
+
+● commandsubstition을 만들어보자
+$ vi commandsubstitution.sh
+
+///////////////////////////vscode 연결해놓을것!////////////////////////////
+-> https://evandde.github.io/vscode-wsl/ 참고... F1 눌러서 New WSL Windows 열고 원하는 폴더 /home/seongjae 열어주기
+$ 
+$ 
+$ 
+$ 
+$ 
+$ 
+$ 
+$ 
+$ 
+$ 
+
+- 입력 리다이렉트
+  - 입력 리다이렉트 기호 < 부등호 : $ command < inpufile
+  - $ wc < testinput
+    - wc 명령은 데이터의 텍스트 양을 계산한다. 기본적으로 3가지 값을 나타낸다.
+
+- 배열
+  - 기존변수 사용
+    ->
+  - 배열 사용
+    ->
+
+  - ${array_name[*]} : 모든 배열에 접근하고 싶을 때
+  - ${array_name[@]} : 
+  - 쉘 스크립트에서 배열을 정의 : array_name=("element1" "element2" " element3")
+  - arraywork를 만들어보자
+    - #!/bin/bash
+      array=(111, "sjLee" "KING" 222 333) 
+      echo $array
+      echo ${array[*]}
+      echo${array[2]}
+      ▽
+      결과값 :
+      root@DESKTOP-684T1FJ:/home/seongjae/workspace# ./arraywork.sh
+      111
+      111 sjlee KING 222 333
+      KING
+$ 
+$ 
+$ 
+$ 
+$ 
+$ 
+$ 
+$ 
+
+- 기본 연산자
+  - 산술 연산자
+  - 관계 연산자
+  - boolean 연산자
+  - 문자열 연산자
+  - 파일 테스트 연산자
+$ x=3
+$ y=4
+$ z=$((x+y))
+$ echo $z
+7
+
+$ let z=12/5
+$ echo $z
+2
+
+- expr 명령어
+  - 숫자와 연산자 사이 띄어쓰기 필수!!
+  - ex) 2+2 (x)  2 + 2 (o)
+  - 쉘 스크립트 내에서 연산 적용 : 백틱 적용
