@@ -172,13 +172,49 @@ $
   root@DESKTOP-684T1FJ:/home/seongjae/workspace# ./variablesave.sh
   14:37:47
   DESKTOP-684T1FJ
-$ 
-$ 
-$ 
-$ 
-$ 
-$ 
-$ 
+- 단일 요소 추가
+  $ vi varaibleplus.sh
+  #!/bin/bash
+  
+  NUMBER=(1 2 3 4)
+  echo ${NUMBER[*]}
+
+  NUMBER+=(5)
+  echo ${NUMBER[*]}
+  ▽ 결과값 :
+  root@DESKTOP-684T1FJ:/home/seongjae/workspace# ./variableplus.sh
+  1 2 3 4
+  1 2 3 4 5
+
+- 여러 요소 추가
+  $ vi varaibleplusplus.sh
+  #!/bin/bash
+  
+  NUMBER=(1 2 3 4)
+  echo ${NUMBER[*]}
+
+  NUMBER+=(5 6 7 8 9)
+  echo ${NUMBER[*]}
+  ▽ 결과값 :
+  root@DESKTOP-684T1FJ:/home/seongjae/workspace# ./variableplus.sh
+  1 2 3 4
+  1 2 3 4 5
+
+- 변수의 값을 요소로 추가
+  $ vi variableplusarray.sh
+  #!/bin/bash
+
+  COMMAND=("ls" "pwd" "ps" "claer")
+  echo ${COMMAND[*]}
+  ELEMENT="123 456"
+
+  COMMAND+=($ELEMENT)
+
+  echo ${COMMAND[*]}
+  ▽ 결과값 :
+  root@DESKTOP-684T1FJ:/home/seongjae/workspace# ./variableplusarray.sh
+  ls pwd ps claer
+  ls pwd ps claer 123 456
 $ 
 
 - 기본 연산자
@@ -187,12 +223,13 @@ $
   - boolean 연산자
   - 문자열 연산자
   - 파일 테스트 연산자
+- bash 변수 처리
 $ x=3
 $ y=4
 $ z=$((x+y))
 $ echo $z
 7
-
+- let 변수 처리
 $ let z=12/5
 $ echo $z
 2
