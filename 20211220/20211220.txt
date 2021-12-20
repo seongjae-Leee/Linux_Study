@@ -32,3 +32,35 @@
 2. 저장 위치 : /home/seonjae/date_log, 파일 이름 : Date_211210.txt
 3. 저장 위치에 해당하는 폴더, 파일이 없으면 쉘스크립트를 통해서 생성되도록 처리
 ▶ 사진자료로 게시 完
+
+---The case...esac Statement
+
+#!/bin/bash
+FRUIT="kiwi"
+
+case "$FRUIT" in
+"apple") echo "Apple tastes goooood"
+;;
+"banana") echo "I like banana milk"
+;;
+"kiwi") echo "New Zealand is famous for kiwi"
+;;
+esac
+
+
+---The case...esac Statement2
+
+#!/bin/bash
+option="${1}"
+case ${option} in
+-f) FILE="${2}"
+echo "File name is $FILE"
+;;
+-d DIR="${2}"
+echo "Dir name is $DIR"
+;;
+*)
+echo "`basename ${0}`:usage: [-f file] | [-d directory]"
+exit 1 # Command to come out of the program with status 1
+;;
+esac
