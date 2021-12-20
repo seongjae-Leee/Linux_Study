@@ -144,7 +144,13 @@ startDate=date +"%Y%m%d" -d "20000101"
 #then
 #       echo $sun
 
+echo "$YEAR년도 $MONTH월"
 echo "SUN  MON  TUE  WED  THU  FRI  SAT"
 echo "================================="
 echo "$sun  $mon  $tue  $wed  $thu  $fri  $sat"
 
+....................
+여기서 추가로 ... 입력한 년도와 달의 정보를 가져오는 것부터 하고
+그게 되면 그걸 일만 숫자로 나타나게 하고
+그 다음 한 줄에 7개씩 1일은 그 전달의 마지막 일 다음 자리에 오게 하고
+사실상 윤년계산은 date를 불러와서 넣어줄꺼면 굳이 필요가 없을듯...?
