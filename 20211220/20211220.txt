@@ -64,3 +64,28 @@ echo "`basename ${0}`:usage: [-f file] | [-d directory]"
 exit 1 # Command to come out of the program with status 1
 ;;
 esac
+
+
+--- while loop
+#!/bin/bash
+number=0
+while [ $number -le 2 ]
+do
+echo "Number: ${number}"
+((number++))
+done
+
+
+--- 날짜를 이용한 루프
+#!/bin/bash
+
+startDate=`date +"%Y%m%d" -d "20210101"`
+endDate=`date +"%Y%m%d" -d "20210201"`
+while [ "$startDate" != "$endDate" ];
+do
+        echo $startDate
+        startDate=`date +"%Y%m%d" -d "$startDate + 1 day"`;
+done
+
+
+---- 
